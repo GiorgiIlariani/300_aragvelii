@@ -28,6 +28,7 @@ const Page = async () => {
             title={item?.title}
             content={item?.content}
             images={item?.images}
+            createdAt={item?.createdAt}
             id={item?._id}
           />
         ))}
