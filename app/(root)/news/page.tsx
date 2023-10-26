@@ -5,19 +5,9 @@ import React, { Suspense } from "react";
 import Loading from "@/components/loading";
 import Pagination from "@/components/shared/Pagination";
 
-async function Page({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | undefined };
-}) {
-  console.log(searchParams);
-
+async function Page() {
   const latestNews = await fetchAllLatestNews();
-
-  const results = await fetchAllNews(
-    searchParams.page ? +searchParams.page : 1,
-    2
-  );
+  const results = await fetchAllNews(1, 5);
 
   return (
     <div className="max-w-[1300px] mx-auto min-h-screen pb-20">
@@ -64,11 +54,11 @@ async function Page({
         ))}
       </div>
 
-      <Pagination
-        path="/new"
+      {/* <Pagination
+        path="/news"
         isNext={results?.isNextPage || false}
-        pageNumber={searchParams?.page ? +searchParams.page : 3}
-      />
+        pageNumber={searchParams?.page ? +searchParams.page : 1}
+      /> */}
     </div>
   );
 }

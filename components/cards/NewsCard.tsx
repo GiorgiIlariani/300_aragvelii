@@ -25,8 +25,6 @@ const NewsCard = async ({
 
   const email = user?.emailAddresses.map((item) => item.emailAddress);
 
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
   return (
     <div
       className={`w-full bg-[#0f1724] py-3 ${
