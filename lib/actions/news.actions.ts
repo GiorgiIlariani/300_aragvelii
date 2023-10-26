@@ -37,10 +37,9 @@ export const fetchAllLatestNews = async () => {
  
         return news;
     } catch (error: any) {
-        throw new Error(`Failed to fetch all news: ${error.message}`)
+        throw new Error(`Failed to fetch latest news: ${error.message}`)
     }
 }
-
 
 export const fetchAllNews = async ( pageNumber = 1, pageSize = 9) => {
 
@@ -51,6 +50,7 @@ export const fetchAllNews = async ( pageNumber = 1, pageSize = 9) => {
         .sort({createdAt: 'desc'})
         .skip(skippedNews)
         .limit(pageSize)
+
     
         const totalNewsCount = await News.countDocuments();
 
@@ -58,9 +58,9 @@ export const fetchAllNews = async ( pageNumber = 1, pageSize = 9) => {
 
         if(!allNews) return
 
-        return { allNews, isNextPage }
-    } catch (error) {
-        
+        return { allNews, isNextPage, totalNewsCount }
+    } catch (error: any) {
+        throw new Error(`Failed to fetch all news: ${error.message}`)
     }
 }
 

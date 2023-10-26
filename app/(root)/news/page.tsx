@@ -3,11 +3,20 @@ import PageTitle from "@/components/shared/PageTitle";
 import { fetchAllLatestNews, fetchAllNews } from "@/lib/actions/news.actions";
 import React, { Suspense } from "react";
 import Loading from "@/components/loading";
-import Pagination from "@/components/shared/Pagination";
+import PaginationComponent from "@/components/shared/PaginationComponent";
 
-async function Page() {
+async function Page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) {
+  console.log(searchParams);
+
   const latestNews = await fetchAllLatestNews();
-  const results = await fetchAllNews(1, 5);
+  const results = await fetchAllNews(
+    searchParams.page ? +searchParams.page : 1,
+    6
+  );
 
   return (
     <div className="max-w-[1300px] mx-auto min-h-screen pb-20">
@@ -54,11 +63,12 @@ async function Page() {
         ))}
       </div>
 
-      {/* <Pagination
-        path="/news"
+      <PaginationComponent
         isNext={results?.isNextPage || false}
         pageNumber={searchParams?.page ? +searchParams.page : 1}
-      /> */}
+        totalCounts={results?.totalNewsCount || 1}
+        path="news"
+      />
     </div>
   );
 }
