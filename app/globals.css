@@ -19,5 +19,8 @@
   .account-form_input {
     @apply border border-dark-4 bg-dark-3 text-light-1 !important;
   }
-}
 
+  .pagination {
+    @apply mt-20 flex w-full items-center justify-center gap-1;
+  }
+}

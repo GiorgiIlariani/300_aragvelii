@@ -1,28 +1,57 @@
 import NewsCard from "@/components/cards/NewsCard";
 import PageTitle from "@/components/shared/PageTitle";
-import { fetchAllNews } from "@/lib/actions/news.actions";
-import { Skeleton } from "@mui/material";
+import { fetchAllLatestNews, fetchAllNews } from "@/lib/actions/news.actions";
 import React, { Suspense } from "react";
+import Loading from "@/components/loading";
+import Pagination from "@/components/shared/Pagination";
 
-const Page = async () => {
-  const news = await fetchAllNews();
+async function Page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) {
+  console.log(searchParams);
 
-  console.log(news);
+  const latestNews = await fetchAllLatestNews();
+
+  const results = await fetchAllNews(
+    searchParams.page ? +searchParams.page : 1,
+    2
+  );
 
   return (
-    <div className="max-w-[1300px] mx-auto mt-10 min-h-screen pb-20">
+    <div className="max-w-[1300px] mx-auto min-h-screen pb-20">
       <PageTitle title="Latest News" />
 
       {/* no news found */}
 
-      {news?.length === 0 && (
+      {results?.allNews.length === 0 && (
         <div className="w-full flex justify-center items-center mt-[150px]">
           <div className="text-light-1 mt-20 text-4xl">No News Found!</div>
         </div>
       )}
 
-      <div className="mt-10 flex flex-col gap-5 px-6">
-        {news?.map((item) => (
+      <Suspense fallback={<Loading />}>
+        <div className="mt-10 flex flex-col gap-6 px-6">
+          {latestNews?.map((item) => (
+            <NewsCard
+              key={item?._id}
+              title={item?.title}
+              content={item?.content}
+              images={item?.images}
+              createdAt={item?.createdAt}
+              id={item?._id}
+              isLatestNews
+            />
+          ))}
+        </div>
+      </Suspense>
+
+      <PageTitle title="News" />
+      <div
+        className="mt-10 grid grid-cols-2 md:grid-cols-1 gap-6 px-6"
+        id="breakpoints">
+        {results?.allNews?.map((item) => (
           <NewsCard
             key={item?._id}
             title={item?.title}
@@ -30,11 +59,18 @@ const Page = async () => {
             images={item?.images}
             createdAt={item?.createdAt}
             id={item?._id}
+            isLatestNews={false}
           />
         ))}
       </div>
+
+      <Pagination
+        path="/new"
+        isNext={results?.isNextPage || false}
+        pageNumber={searchParams?.page ? +searchParams.page : 3}
+      />
     </div>
   );
-};
+}
 
 export default Page;

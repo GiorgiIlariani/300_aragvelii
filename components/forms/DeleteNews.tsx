@@ -27,8 +27,8 @@ const DeleteNews = ({ userId }: { userId: string }) => {
     <Image
       src="/assets/delete.svg"
       alt="delete icon"
-      width={23}
-      height={23}
+      width={24}
+      height={24}
       className="cursor-pointer object-contain"
       onClick={handleClick}
     />

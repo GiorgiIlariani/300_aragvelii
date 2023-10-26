@@ -25,16 +25,42 @@ export const createNews = async ({ content, title, author, id, url, path, images
     }
 }
 
-export const fetchAllNews = async () => {
+export const fetchAllLatestNews = async () => {
     try {
         connectToDB();
 
-        const news = await News.find({}).sort({ createdAt: "desc" });
+        const news = await News.find({})
+        .sort({ createdAt: "desc" })
+        .limit(3);
+
         if(!news) return;
  
         return news;
     } catch (error: any) {
         throw new Error(`Failed to fetch all news: ${error.message}`)
+    }
+}
+
+
+export const fetchAllNews = async ( pageNumber = 1, pageSize = 9) => {
+
+    const skippedNews = (pageNumber - 1) * pageSize;
+
+    try {
+        const allNews = await News.find({})
+        .sort({createdAt: 'desc'})
+        .skip(skippedNews)
+        .limit(pageSize)
+    
+        const totalNewsCount = await News.countDocuments();
+
+        const isNextPage = totalNewsCount > skippedNews + allNews.length;
+
+        if(!allNews) return
+
+        return { allNews, isNextPage }
+    } catch (error) {
+        
     }
 }
 
