@@ -22,7 +22,6 @@ const NewsCard = async ({
   isLatestNews,
 }: Props) => {
   const user = await currentUser();
-
   const email = user?.emailAddresses.map((item) => item.emailAddress);
 
   return (
@@ -43,18 +42,18 @@ const NewsCard = async ({
             className="w-[384px] h-[216px] object-cover"
           />
         </Link>
-        <div className="flex flex-col gap-[15px]">
-          <h4 className="text-light-1 text-lg">{`${title.substring(
+        <div className="flex flex-col gap-5">
+          <h4 className="text-light-1 text-xl font-semibold">{`${title.substring(
             0,
             40
           )}...`}</h4>
-          <p className="max-w-[700px] text-light-1 text-base">{`${content.substring(
+          <p className="max-w-[700px] text-light-1 text-base font-normal">{`${content.substring(
             0,
             150
           )}...`}</p>
           <div
             className={`${
-              !isLatestNews ? "absolute bottom-6 left-6" : "mt-10"
+              !isLatestNews ? "absolute bottom-6 left-6" : "mt-20 lg:mt-10"
             }`}>
             <span className="text-gray-1 font-semibold text-base xs:text-sm">
               {formatDateString(createdAt) + "წ."}

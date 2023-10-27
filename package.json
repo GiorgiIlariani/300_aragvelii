@@ -13,6 +13,7 @@
     "@clerk/themes": "^1.7.9",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@headlessui/react": "^1.7.17",
     "@hookform/resolvers": "^3.3.2",
     "@mui/icons-material": "^5.14.15",
     "@mui/material": "^5.14.15",

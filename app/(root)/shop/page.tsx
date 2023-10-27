@@ -1,7 +1,11 @@
-import React from "react";
+import PageTitle from "@/components/shared/PageTitle";
 
 const Page = () => {
-  return <div>Page</div>;
+  return (
+    <div className="max-w-[1300px] mx-auto mt-10 min-h-screen">
+      <PageTitle title="Shop" />
+    </div>
+  );
 };
 
 export default Page;

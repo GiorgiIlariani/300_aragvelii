@@ -11,6 +11,7 @@ const DeleteNews = ({ userId }: { userId: string }) => {
   const handleClick = async () => {
     try {
       await deleteNews(userId, path);
+
       toast.success("News was deleted", {
         position: "top-center",
         autoClose: 3000,

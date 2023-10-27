@@ -42,10 +42,11 @@ export const fetchAllLatestNews = async () => {
 }
 
 export const fetchAllNews = async ( pageNumber = 1, pageSize = 9) => {
-
-    const skippedNews = (pageNumber - 1) * pageSize;
-
     try {
+        connectToDB();
+
+        const skippedNews = (pageNumber - 1) * pageSize;
+
         const allNews = await News.find({})
         .sort({createdAt: 'desc'})
         .skip(skippedNews)
