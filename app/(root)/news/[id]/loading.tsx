@@ -6,7 +6,7 @@ const Loading = () => {
     <div className="max-w-[1300px] mx-auto my-[100px] min-h-screen px-6">
       <Skeleton
         variant="rectangular"
-        height={500}
+        height={350}
         sx={{
           bgcolor: "#0f1724",
           borderRadius: "16px",
