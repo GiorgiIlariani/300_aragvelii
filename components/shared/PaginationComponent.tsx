@@ -39,8 +39,6 @@ function PaginationComponent({ pageNumber, isNext, path, totalCounts }: Props) {
     }
   };
 
-  if (!isNext && pageNumber === 1) return null;
-
   return (
     <div className="pagination">
       <Button
