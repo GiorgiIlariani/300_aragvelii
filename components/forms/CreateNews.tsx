@@ -139,6 +139,15 @@ const CreateNews = ({
       });
   };
 
+  const handleImageRemove = (index: number, field: any) => {
+    // Create a copy of the current images array
+    const newImages = [...field.value];
+    // Remove the image at the specified index
+    newImages.splice(index, 1);
+    // Update the form field value with the updated images
+    field.onChange(newImages);
+  };
+
   return (
     <Form {...form}>
       <form
@@ -152,15 +161,32 @@ const CreateNews = ({
             <FormItem className="flex items-center gap-4 space-y-0">
               {field.value.length > 0 &&
                 field.value?.map((image, i) => (
-                  <Image
-                    key={i}
-                    src={image}
-                    alt="image"
-                    width={96}
-                    height={96}
-                    priority
-                    className="w-[96px] h-[96px] object-cover m-0"
-                  />
+                  <div className="relative w-[96px] h-[96px]">
+                    <Image
+                      key={i}
+                      src={image}
+                      alt="image"
+                      width={96}
+                      height={96}
+                      priority
+                      className="w-[96px] h-[96px] object-cover m-0"
+                    />
+                    <div className="absolute group inset-0 bg-black flex items-center justify-center transition-opacity duration-300 opacity-0 hover:opacity-80">
+                      <div className="flex items-center gap-x-2">
+                        <button
+                          onClick={() => handleImageRemove(i, field)}
+                          className="w-[48px] h-[48px] cursor-pointer group-hover:opacity-100 opacity-0 transition duration-300 ease-out flex justify-center items-center rounded-xl bg-[rgba(137,150,174,.4)]">
+                          <Image
+                            src="/assets/trash.svg"
+                            alt="trash icon"
+                            width={24}
+                            height={24}
+                            className="object-contain z-10 group-hover:opacity-100"
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 ))}
               {field.value.length === 0 && (
                 <FormLabel className="create-news_image-label" />
