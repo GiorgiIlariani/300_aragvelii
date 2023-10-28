@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { deleteNews } from "@/lib/actions/news.actions";
-import { FaTrash } from "react-icons/fa";
-import { usePathname } from "next/navigation";
+import { FaEdit } from "react-icons/fa";
+import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { fetchEachNews } from "@/lib/actions/news.actions";
 
-const DeleteNews = ({ newsId }: { newsId: string }) => {
+const EditNews = ({ newsId }: { newsId: string }) => {
   const path = usePathname();
+  const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -20,12 +21,8 @@ const DeleteNews = ({ newsId }: { newsId: string }) => {
 
   const handleClick = async () => {
     try {
-      await deleteNews(newsId, path);
-
-      toast.success("News was deleted", {
-        position: "top-center",
-        autoClose: 3000,
-      });
+      const news = await fetchEachNews(newsId);
+      router.push(`/create-news?news=${newsId}`);
     } catch (error) {
       toast.error("Something went wrong!", {
         position: "top-center",
@@ -39,7 +36,7 @@ const DeleteNews = ({ newsId }: { newsId: string }) => {
       style={{
         width: "28px",
         height: "28px",
-        color: "#e66b6b",
+        color: "#6be675",
         cursor: "pointer",
         transition: "all 0.3s linear",
         scale: isHovered ? "1.1" : "1",
@@ -47,9 +44,9 @@ const DeleteNews = ({ newsId }: { newsId: string }) => {
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}>
-      <FaTrash />
+      <FaEdit />
     </button>
   );
 };
 
-export default DeleteNews;
+export default EditNews;

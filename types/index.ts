@@ -18,3 +18,14 @@ export interface createNewsProps {
     images: string[]
 }
 
+
+
+export interface  EditedNewsProps {
+  author: string;
+  content: string;
+  createdAt: Date;
+  id: string;
+  images: string[];
+  title: string;
+  url: string;
+}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import DeleteNews from "../forms/DeleteNews";
 import { currentUser } from "@clerk/nextjs";
 import { formatDateString } from "@/utils";
+import EditNews from "../forms/EditNews";
 
 interface Props {
   title: string;
@@ -61,11 +62,14 @@ const NewsCard = async ({
           </div>
         </div>
       </div>
-      {email?.[0] === "lmaisuradze3333@gmail.com" ? (
-        <div className="absolute bottom-6 right-6">
-          <DeleteNews userId={id} />
-        </div>
-      ) : null}
+      <div className="flex gap-4 items-center absolute bottom-6 right-6">
+        {email?.[0] === "lmaisuradze3333@gmail.com" ? (
+          <DeleteNews newsId={id} />
+        ) : null}
+        {email?.[0] === "lmaisuradze3333@gmail.com" ? (
+          <EditNews newsId={id} />
+        ) : null}
+      </div>
     </div>
   );
 };

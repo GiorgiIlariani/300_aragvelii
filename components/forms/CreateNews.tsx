@@ -2,9 +2,9 @@
 
 import * as z from "zod";
 import Image from "next/image";
-import { ControllerRenderProps, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { usePathname, useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -17,11 +17,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-
-import { useUploadThing } from "@/lib/uploadthing";
-import { isBase64Image } from "@/utils";
 import { NewsValidation } from "@/lib/validations/news";
-import { createNews } from "@/lib/actions/news.actions";
+import {
+  createNews,
+  editNews,
+  fetchEachNews,
+} from "@/lib/actions/news.actions";
+import { useSearchParams } from "next/navigation";
+import { EditedNewsProps } from "@/types";
 
 const CreateNews = ({
   userId,
@@ -32,30 +35,57 @@ const CreateNews = ({
 }) => {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [isLaoding, setIsLaoding] = useState(false);
+  const [editedNewsInfo, setEditedNewsInfo] = useState<EditedNewsProps>();
+  const searchedNewsId = searchParams.get("news");
 
   const form = useForm<z.infer<typeof NewsValidation>>({
     resolver: zodResolver(NewsValidation),
     defaultValues: {
-      images: [],
-      title: "",
-      content: "",
+      images: editedNewsInfo?.images || [],
+      title: editedNewsInfo?.title || "",
+      content: editedNewsInfo?.content || "",
+      url: editedNewsInfo?.url || "",
     },
   });
+
+  useEffect(() => {
+    const fetchEditedNewsData = async () => {
+      const news = await fetchEachNews(searchedNewsId!);
+      if (news) {
+        setEditedNewsInfo(news[0]);
+        form.reset(news[0]);
+      }
+    };
+    fetchEditedNewsData();
+  }, [form.reset]);
 
   const onSubmit = async (values: z.infer<typeof NewsValidation>) => {
     try {
       setIsLaoding(true);
       // await create new news
-      await createNews({
-        images: values.images,
-        id: userId,
-        author: username,
-        content: values.content,
-        title: values.title,
-        url: values.url,
-        path: pathname,
-      });
+      if (!editedNewsInfo) {
+        await createNews({
+          images: values.images,
+          id: userId,
+          author: username,
+          content: values.content,
+          title: values.title,
+          url: values.url,
+          path: pathname,
+        });
+      }
+
+      if (searchedNewsId) {
+        await editNews({
+          newsId: searchedNewsId,
+          title: values.title,
+          content: values.content,
+          images: values.images,
+          url: values.url,
+        });
+      }
 
       router.push("/news");
     } catch (error: any) {
@@ -121,8 +151,9 @@ const CreateNews = ({
           render={({ field }) => (
             <FormItem className="flex items-center gap-4 space-y-0">
               {field.value.length > 0 &&
-                field.value?.map((image) => (
+                field.value?.map((image, i) => (
                   <Image
+                    key={i}
                     src={image}
                     alt="image"
                     width={96}
@@ -213,7 +244,9 @@ const CreateNews = ({
         <Button
           type="submit"
           className="bg-primary-500 text-light-1 text-xl tracking-wider">
-          {isLaoding ? "იტვირთება..." : "დამატება"}
+          {editedNewsInfo
+            ? `${isLaoding ? "Editing..." : "Edit"}`
+            : `${isLaoding ? "uplading..." : "upload"}`}
         </Button>
       </form>
     </Form>

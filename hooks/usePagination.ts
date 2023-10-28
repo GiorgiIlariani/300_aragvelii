@@ -28,7 +28,6 @@ export const usePagination = ({
     
     // თუ ფეიჯინეიშენზე რამდენი გვერდიც უნდა აჩვენო მეტია ან ტოლია გვერდების რაოდენობაზე
     if (totalPageNumbers >= totalPageCount) {
-      console.log(range(1, totalPageCount));      
       return range(1, totalPageCount);
     }
 

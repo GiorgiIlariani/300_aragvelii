@@ -18,7 +18,6 @@ export const createNews = async ({ content, title, author, id, url, path, images
             author,
             url,
         })
-
         revalidatePath(path);
     } catch (error: any) {
         throw new Error(`Failed to create/update news: ${error.message}`)
@@ -28,7 +27,6 @@ export const createNews = async ({ content, title, author, id, url, path, images
 export const fetchAllLatestNews = async () => {
     try {
         connectToDB();
-
         const news = await News.find({})
         .sort({ createdAt: "desc" })
         .limit(3);
@@ -44,7 +42,6 @@ export const fetchAllLatestNews = async () => {
 export const fetchAllNews = async ( pageNumber = 1, pageSize = 9) => {
     try {
         connectToDB();
-
         const skippedNews = (pageNumber - 1) * pageSize;
 
         const allNews = await News.find({})
@@ -80,19 +77,49 @@ export const fetchEachNews = async (userId: string) => {
     }
 }
 
-export const deleteNews = async (userId: string, path: string) => {
+export const deleteNews = async (newsId: string, path: string) => {
     try {
         connectToDB();
 
         // Use the News model to find and delete the news item with the given userId
-        const deletedNews = await News.findOneAndDelete({ _id: userId });
+        const deletedNews = await News.findOneAndDelete({ _id: newsId });
 
         if (!deletedNews) {
-            throw new Error(`News with ID ${userId} not found`);
+            throw new Error(`News with ID ${newsId} not found`);
         }
 
         revalidatePath(path);
     } catch (error: any) {
         throw new Error(`Failed to delete news: ${error.message}`);
     }
+}
+
+
+interface EditNewsProps {
+    newsId: string;
+    title: string;
+    content: string;
+    images: string[];
+    url: string;
+}
+
+export const editNews = async ({ newsId, title, content, images, url } : EditNewsProps) => {
+    try {
+       connectToDB();
+
+       const news = await News.findOneAndUpdate(
+        { _id: newsId },
+        { 
+            title, 
+            content,
+            images,
+            url,
+        }
+       );
+       
+       return news;
+    } catch (error: any) {
+        throw new Error(`Failed to edit news: ${error.message}`);
+    }
+    
 }

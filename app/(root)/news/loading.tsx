@@ -11,14 +11,17 @@ const Loading = async ({ loadingLatestNews, loadingAllNews }: Props) => {
   return (
     <div className="max-w-[1300px] mx-auto mt-10 min-h-screen pb-20">
       {loadingLatestNews ? (
-        <div className="w-full flex flex-col gap-6 px-5">
+        <div className="w-full flex flex-col gap-14 px-5">
           {[1, 2, 3]?.map((item) => (
             <Skeleton
               key={item}
               variant="rectangular"
-              width={1252}
               height={280}
-              sx={{ bgcolor: "#0f1724", borderRadius: "16px" }}
+              sx={{
+                bgcolor: "#0f1724",
+                borderRadius: "16px",
+                width: "100%",
+              }}
             />
           ))}
         </div>
@@ -29,9 +32,12 @@ const Loading = async ({ loadingLatestNews, loadingAllNews }: Props) => {
             <Skeleton
               key={item}
               variant="rectangular"
-              width={614}
-              height={455}
-              sx={{ bgcolor: "#0f1724", borderRadius: "16px" }}
+              height={280}
+              sx={{
+                bgcolor: "#0f1724",
+                borderRadius: "16px",
+                width: "100%",
+              }}
             />
           ))}
         </div>
