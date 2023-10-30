@@ -3,7 +3,7 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <div className="w-full grid grid-cols-2 lgd:grid-cols-1 gap-6 my-16 px-6 mt-10">
+    <div className="w-full grid grid-cols-3 lg:grid-cols-2 md:flex md:flex-col gap-6 my-16 px-6">
       {[1, 2, 3, 4, 5].map((item) => (
         <Skeleton
           key={item}

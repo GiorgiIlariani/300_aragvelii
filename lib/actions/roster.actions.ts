@@ -19,7 +19,6 @@ export const createRoster = async () => {
 export const fetchAllPlayer = async () => {
     try {
         connectToDB();
-        await new Promise((resolve) => setTimeout(resolve, 4000))
         const allPlayers = await Roster.find({});
 
         if(!allPlayers) return;
@@ -27,5 +26,16 @@ export const fetchAllPlayer = async () => {
         return allPlayers;
     } catch (error: any) {
         throw new Error(`Failed to fetch roster data: ${error.message}`);
+    }
+}
+
+export const fetchEachPlayer = async (playerId: string) => {
+    try {
+        connectToDB();
+        const player = await Roster.find({ _id: playerId });
+
+        return player;
+    } catch (error: any) {
+        throw new Error(`Failed to fetch player data: ${error.message}`);
     }
 }
