@@ -25,6 +25,7 @@ import {
 } from "@/lib/actions/news.actions";
 import { useSearchParams } from "next/navigation";
 import { EditedNewsProps } from "@/types";
+import { createRoster } from "@/lib/actions/roster.actions";
 
 const CreateNews = ({
   userId,
@@ -64,6 +65,7 @@ const CreateNews = ({
   const onSubmit = async (values: z.infer<typeof NewsValidation>) => {
     try {
       setIsLaoding(true);
+      await createRoster();
       // await create new news
       if (!editedNewsInfo) {
         await createNews({

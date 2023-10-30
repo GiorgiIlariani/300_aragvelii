@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import DeleteNews from "../forms/DeleteNews";
+import DeleteNews from "./DeleteNews";
 import { currentUser } from "@clerk/nextjs";
 import { formatDateString } from "@/utils";
-import EditNews from "../forms/EditNews";
+import EditNews from "./EditNews";
 
 interface Props {
   title: string;
