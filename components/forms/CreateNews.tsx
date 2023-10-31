@@ -65,7 +65,6 @@ const CreateNews = ({
   const onSubmit = async (values: z.infer<typeof NewsValidation>) => {
     try {
       setIsLaoding(true);
-      await createRoster();
       // await create new news
       if (!editedNewsInfo) {
         await createNews({
