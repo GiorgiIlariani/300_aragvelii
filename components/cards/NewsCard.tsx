@@ -33,7 +33,7 @@ const NewsCard = async ({
       <div
         className={`flex ${
           !isLatestNews && "flex-col"
-        } gap-6 py-5 lg:flex-col lg:items-center lg:gap-8`}>
+        } gap-6 py-5 lg:flex-col items-center lg:gap-8`}>
         <Link href={`/news/${id}`}>
           <Image
             src={images[0]}
@@ -47,11 +47,11 @@ const NewsCard = async ({
           <h4 className="text-light-1 text-xl font-semibold">{`${title.substring(
             0,
             40
-          )}...`}</h4>
+          )} ...}`}</h4>
           <p className="max-w-[700px] text-light-1 text-base font-normal">{`${content.substring(
             0,
             200
-          )}...`}</p>
+          )} ...}`}</p>
           <div
             className={`${
               !isLatestNews ? "absolute bottom-6 left-6" : "mt-20 lg:mt-10"

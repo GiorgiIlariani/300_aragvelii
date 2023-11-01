@@ -10,6 +10,7 @@ const Roster = async () => {
         return (
           <PlayerCard
             key={player?._id}
+            id={player?._id}
             imgUrl={player?.imgUrl}
             pubgId={player?.pubgId}
             pubgUsername={player?.pubgUsername}

@@ -1,5 +1,24 @@
 import mongoose from "mongoose";
 
+const detailSchema = new mongoose.Schema({
+  match: {
+    type: Number,
+    required: false,
+  },
+  kills: {
+    type: Number,
+    required: false,
+  },
+  damage: {
+    type: Number,
+    required: false,
+  },
+  survivalTime: {
+    type: Number,
+    required: false,
+  },
+});
+
 const rosterSchema = new mongoose.Schema({
   id: {
     type: Number,
@@ -21,16 +40,7 @@ const rosterSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-//   socialIcons: [
-//     {
-//       icon: {
-//         type: String, // You may want to specify the type for icons appropriately
-//       },
-//       href: {
-//         type: String,
-//       },
-//     },
-//   ],
+  details: detailSchema, // Embed the details subdocument
 });
 
 const Roster = mongoose.models.Roster || mongoose.model('Roster', rosterSchema);

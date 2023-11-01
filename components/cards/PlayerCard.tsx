@@ -8,6 +8,7 @@ interface Props {
   pubgUsername: string;
   // socialIcons?: any[];
   fullName: string;
+  id: string;
 }
 
 const PlayerCard = ({
@@ -16,9 +17,10 @@ const PlayerCard = ({
   pubgUsername,
   // socialIcons,
   fullName,
+  id,
 }: Props) => {
   return (
-    <Link href={`roster/${pubgUsername}`}>
+    <Link href={`roster/${id}`}>
       <div className="px-6 xs:px-4 sm:px-6 py-8 bg-[#0f1724] rounded-xl flex flex-col items-center cursor-pointer">
         <Image
           src={imgUrl}
