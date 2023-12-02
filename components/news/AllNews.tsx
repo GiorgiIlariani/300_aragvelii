@@ -5,7 +5,7 @@ import PaginationComponent from "../shared/PaginationComponent";
 
 interface Props {
   page: number;
-  isHomePage: boolean;
+  isHomePage?: boolean;
 }
 
 const AllNews = async ({ page, isHomePage }: Props) => {
