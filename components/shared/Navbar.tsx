@@ -36,7 +36,7 @@ const Navbar = ({ email }: { email: string }) => {
               {item.title}
             </Link>
           ))}
-          {email === "lmaisuradze3333@gmail.com" ? (
+          {email === "codemasterig@gmail.com" ? (
             <Link
               href="/create-news"
               className="text-[#0f1724] font-medium text-[18px] hover:scale-105 hover:text-[#3498db] transition duration-200">
@@ -66,7 +66,7 @@ const Navbar = ({ email }: { email: string }) => {
                   {item.title}
                 </Link>
               ))}
-              {email === "lmaisuradze3333@gmail.com" ? (
+              {email === "codemasterig@gmail.com" ? (
                 <Link
                   href="/create-news"
                   className="text-light-1 font-medium text-[21px] hover:scale-105 hover:text-[#3498db] transition duration-200">

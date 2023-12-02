@@ -63,10 +63,10 @@ const NewsCard = async ({
         </div>
       </div>
       <div className="flex gap-4 items-center absolute bottom-6 right-6">
-        {email?.[0] === "lmaisuradze3333@gmail.com" ? (
+        {email?.[0] === "codemasterig@gmail.com" ? (
           <DeleteNews newsId={id} />
         ) : null}
-        {email?.[0] === "lmaisuradze3333@gmail.com" ? (
+        {email?.[0] === "codemasterig@gmail.com" ? (
           <EditNews newsId={id} />
         ) : null}
       </div>

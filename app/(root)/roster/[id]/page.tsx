@@ -1,7 +1,10 @@
 import PlayerDetails from "@/components/cards/PlayerDetails";
+import DeleteWeeklyStatistic from "@/components/statistic/DeleteWeeklyStatistic";
 import { Button } from "@/components/ui/button";
-import { fetchEachPlayer } from "@/lib/actions/roster.actions";
-import Image from "next/image";
+import {
+  deletePlayerWeeklyDetails,
+  fetchEachPlayer,
+} from "@/lib/actions/roster.actions";
 import Link from "next/link";
 import React from "react";
 
@@ -20,6 +23,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
       <div className="flex flex-col">
         <div className="flex flex-col mt-10">
           <h4 className="text-light-1 text-4xl font-semibold">Statistics</h4>
+          {/* weekly statistic */}
           <div className="flex flex-col items-start">
             <h5 className="text-light-1 text-lg underline cursor-pointer mt-2">
               Weekly
@@ -51,13 +55,16 @@ const Page = async ({ params }: { params: { id: string } }) => {
             </div>
           </div>
         </div>
-        <Link href={`/statistic/${params.id}`} className="mt-10">
-          <Button
-            type="button"
-            className="bg-primary-500 text-light-1 text-xl tracking-wider">
-            Change Statistic
-          </Button>
-        </Link>
+        <div className="flex gap-4 mt-16 items-center">
+          <Link href={`/statistic/${params.id}`}>
+            <Button
+              type="button"
+              className="bg-primary-500 text-light-1 text-xl tracking-wider">
+              Change Statistic
+            </Button>
+          </Link>
+          <DeleteWeeklyStatistic playerId={params.id} />
+        </div>
       </div>
     </div>
   );

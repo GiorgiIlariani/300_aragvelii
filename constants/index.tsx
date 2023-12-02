@@ -55,8 +55,8 @@ export const Navbarconstants = [
   },
   {
     id: 5,
-    title: "Tournaments",
-    href: "/tournaments",
+    title: "Results",
+    href: "/results",
   },
 ];
 

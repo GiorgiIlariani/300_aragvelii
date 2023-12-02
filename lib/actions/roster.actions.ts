@@ -1,5 +1,6 @@
 'use server';
 
+import { revalidatePath } from "next/cache";
 import Roster from "../models/roster.model";
 import { connectToDB } from "../mongoose";
 import { RosterConstants as rosterData } from "@/constants";
@@ -60,6 +61,9 @@ export const updatePlayerDetails = async (playerId: string, updatedDetails: upda
             return;
         }
 
+        // const lastUpdated = existingPlayer.details.lastUpdated || null;
+
+
         // Calculate the updated details by adding the new values to the old values
         const updatedDetailsWithAddition = {
             match: (parseInt(existingPlayer.details.match || 0) + parseInt(updatedDetails.match)).toString(),
@@ -79,8 +83,18 @@ export const updatePlayerDetails = async (playerId: string, updatedDetails: upda
     }
 }
 
+export const deletePlayerWeeklyDetails = async (playerId: string, path: string) => {
+    try {
+        connectToDB();
 
+        await Roster.findOneAndUpdate(
+            { _id: playerId },
+            { $set: { 'details.match': 0, 'details.kills': 0, 'details.damage': 0, 'details.survivalTime': 0 } },
+            { new: true } // To get the updated document
+        );
 
-
-
-
+        revalidatePath(path)
+    } catch (error: any) {
+        throw new Error(`Failed to delete player weekly statistic: ${error.message}`);
+    }
+}

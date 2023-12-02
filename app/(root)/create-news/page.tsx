@@ -12,7 +12,7 @@ const Page = async () => {
 
   const email = user?.emailAddresses.map((item) => item.emailAddress);
 
-  if (email?.[0] !== "lmaisuradze3333@gmail.com") return null;
+  if (email?.[0] !== "codemasterig@gmail.com") return null;
 
   return (
     <div className="max-w-[1300px] mx-auto mt-10 pt-10 pb-[100px] px-4">

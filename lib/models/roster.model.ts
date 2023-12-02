@@ -17,6 +17,10 @@ const detailSchema = new mongoose.Schema({
     type: Number,
     required: false,
   },
+  // lastUpdated: {
+  //   type: Date, // Change the type to Date for storing timestamps
+  //   required: false,
+  // },
 });
 
 const rosterSchema = new mongoose.Schema({

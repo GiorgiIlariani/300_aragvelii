@@ -5,9 +5,10 @@ import PaginationComponent from "../shared/PaginationComponent";
 
 interface Props {
   page: number;
+  isHomePage: boolean;
 }
 
-const AllNews = async ({ page }: Props) => {
+const AllNews = async ({ page, isHomePage }: Props) => {
   const results = await fetchAllNews(page, 6);
 
   return (
@@ -25,12 +26,14 @@ const AllNews = async ({ page }: Props) => {
           />
         ))}
       </div>
-      <PaginationComponent
-        isNext={results?.isNextPage || false}
-        pageNumber={page}
-        totalCounts={results?.totalNewsCount || 1}
-        path="news"
-      />
+      {!isHomePage && (
+        <PaginationComponent
+          isNext={results?.isNextPage || false}
+          pageNumber={page}
+          totalCounts={results?.totalNewsCount || 1}
+          path="news"
+        />
+      )}
     </>
   );
 };
