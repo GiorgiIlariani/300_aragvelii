@@ -25,8 +25,6 @@ import {
 } from "@/lib/actions/news.actions";
 import { useSearchParams } from "next/navigation";
 import { EditedNewsProps } from "@/types";
-import { createRoster } from "@/lib/actions/roster.actions";
-import { RosterConstants } from "@/constants";
 
 const CreateNews = ({
   userId,
