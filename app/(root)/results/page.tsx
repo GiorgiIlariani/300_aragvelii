@@ -7,8 +7,6 @@ import AllResults from "@/components/results/AllResults";
 const Page = async () => {
   const results = await fetchResults();
 
-  console.log(results);
-
   return (
     <div className="max-w-[1300px] mx-auto mt-10 min-h-screen">
       <PageTitle title="Results" />

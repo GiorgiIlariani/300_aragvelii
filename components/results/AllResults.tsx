@@ -14,9 +14,16 @@ type Props = {
 
 const AllResults = ({ results }: Props) => {
   return (
-    <div className="w-full min-h-screen px-4 flex gap-6 py-10">
+    <div className="w-full px-4 grid grid-cols-3 xl:grid-cols-2 md:flex md:flex-col gap-[18px] py-10">
       {results.map((resultCard) => (
-        <ResultCard key={resultCard.id} {...resultCard} />
+        <ResultCard
+          key={resultCard.id}
+          image={resultCard.image}
+          title={resultCard.title}
+          content={resultCard.content}
+          date={resultCard.date}
+          createdAt={resultCard.createdAt}
+        />
       ))}
     </div>
   );

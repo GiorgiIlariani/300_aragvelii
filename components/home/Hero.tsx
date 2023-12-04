@@ -5,7 +5,7 @@ import ReactPlayer from "react-player";
 
 const Hero = () => {
   return (
-    <div className="w-full flex gap-20">
+    <div className="w-full px-4 flex justify-between xl:flex-col xl:gap-y-8 xl:items-center">
       <div className="h-full">
         <ReactPlayer
           url="https://www.youtube.com/watch?v=LGmBzh-2YfI"
@@ -14,7 +14,7 @@ const Hero = () => {
           height={540}
         />
       </div>
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col xl:flex-row xl:w-[917px] xl:items-center justify-between">
         <ReactPlayer
           url="https://www.youtube.com/watch?v=WEZ_i1Sgb_0"
           controls
@@ -31,7 +31,7 @@ const Hero = () => {
           url="https://youtu.be/KZiYzwZtoBg?si=EigGuXl1z-DQuaDz"
           controls
           width={290}
-          height={170}
+          height={163}
         />
       </div>
     </div>
