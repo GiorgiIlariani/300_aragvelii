@@ -1,12 +1,12 @@
 import React from "react";
-import ResultCard from "./ResultCard";
+import ResultCard from "../cards/ResultCard";
 
 type Props = {
   results: {
     id: string;
     image: string;
     title: string;
-    content: string;
+    prizepool: string;
     date: string;
     createdAt: Date;
   }[];
@@ -20,7 +20,7 @@ const AllResults = ({ results }: Props) => {
           key={resultCard.id}
           image={resultCard.image}
           title={resultCard.title}
-          content={resultCard.content}
+          prizepool={resultCard.prizepool}
           date={resultCard.date}
           createdAt={resultCard.createdAt}
         />

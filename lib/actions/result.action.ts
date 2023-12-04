@@ -8,12 +8,13 @@ interface createResultProps {
     id: string;
     title: string;
     content: string;
+    prizepool: string;
     image: string;
     path: string;
     date: string;
 }
 
-export async function createResult ({ id, title, content, image, path, date }: createResultProps) {
+export async function createResult ({ id, title, content, prizepool, image, path, date }: createResultProps) {
     connectToDB();
 
     try {
@@ -21,6 +22,7 @@ export async function createResult ({ id, title, content, image, path, date }: c
             id,
             title,
             content,
+            prizepool,
             image,
             date,
         })

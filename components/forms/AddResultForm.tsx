@@ -32,6 +32,7 @@ const AddResultForm = ({ userId }: { userId: string }) => {
       title: "",
       content: "",
       date: "",
+      prizepool: "",
     },
   });
 
@@ -44,6 +45,7 @@ const AddResultForm = ({ userId }: { userId: string }) => {
         title: values.title,
         image: values.image,
         date: values.date,
+        prizepool: values.prizepool,
         path: pathname,
       });
     } catch (error) {
@@ -177,6 +179,7 @@ const AddResultForm = ({ userId }: { userId: string }) => {
           )}
         />
 
+        {/* date */}
         <FormField
           control={form.control}
           name="date"
@@ -188,6 +191,27 @@ const AddResultForm = ({ userId }: { userId: string }) => {
               <FormControl>
                 <Input
                   type="date"
+                  className="account-form_input no-focus"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* prizepool */}
+        <FormField
+          control={form.control}
+          name="prizepool"
+          render={({ field }) => (
+            <FormItem className="flex w-full flex-col gap-3">
+              <FormLabel className="font-normal text-lg text-light-2">
+                საპრიზო
+              </FormLabel>
+              <FormControl>
+                <Input
+                  type="number"
                   className="account-form_input no-focus"
                   {...field}
                 />

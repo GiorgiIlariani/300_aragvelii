@@ -21,6 +21,10 @@ const resultSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  prizepool: {
+    type: String,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

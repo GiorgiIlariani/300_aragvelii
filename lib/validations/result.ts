@@ -5,4 +5,5 @@ export const resultsValidation = z.object({
     title: z.string().min(5),
     content: z.string().min(10),
     date: z.string(),
+    prizepool: z.string(),
 });

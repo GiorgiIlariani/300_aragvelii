@@ -5,12 +5,12 @@ import React from "react";
 type Props = {
   image: string;
   title: string;
-  content: string;
+  prizepool: string;
   date: string;
   createdAt: Date;
 };
 
-const ResultCard = ({ image, title, content, date, createdAt }: Props) => {
+const ResultCard = ({ image, title, prizepool, date, createdAt }: Props) => {
   return (
     <Link
       href={``}
@@ -31,7 +31,7 @@ const ResultCard = ({ image, title, content, date, createdAt }: Props) => {
         <div className="w-full p-[10px] flex flex-col gap-4 bg-[#0f1724]">
           <div className="flex items-center justify-between">
             <h4 className="text-light-1 font-semibold">Pubg Mobile</h4>
-            <span className="text-green-600 text-[15px]">{8000}₾</span>
+            <span className="text-green-600 text-[15px]">{prizepool}₾</span>
           </div>
           <hr className="bg-white" />
           <div className="flex items-center justify-between">
