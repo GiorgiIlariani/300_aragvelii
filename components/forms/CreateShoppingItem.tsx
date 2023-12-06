@@ -25,7 +25,6 @@ import {
 } from "@/components/ui/select";
 
 // radio buttons
-import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 import { shoppingItemValidation } from "@/lib/validations/shoppingItem";
@@ -33,7 +32,7 @@ import { shoppingItemsCategory } from "@/constants";
 import AdditionalInformation from "../shared/AdditionalInformation";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
-import { createShoppingCard } from "@/lib/actions/ShoppingCard.action";
+import { createShoppingCard } from "@/lib/actions/ShoppingCard.actions";
 import { usePathname, useRouter } from "next/navigation";
 
 const CreateShoppingItem = () => {

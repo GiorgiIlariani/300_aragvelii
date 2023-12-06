@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const ShoppingLeftSidebar = () => {
   return (
-    <div className="w-[280px] min-h-screen flex flex-col">
+    <div className="min-w-[300px] min-h-screen flex flex-col">
       <div className="flex items-center gap-2 rounded-[14px] p-3 bg-[#0f1724]">
         <input
           type="text"

@@ -4,19 +4,22 @@ import { Suspense } from "react";
 import Loading from "./loading";
 import ShoppingItems from "@/components/shop/ShoppingItems";
 
-async function Page() {
-//   {
-//   category,
-// }: {
-//   category: { [key: string]: string | undefined };
-// }
+export function Page({
+  // params,
+  searchParams,
+}: {
+  // params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
+  const category = searchParams?.category;
+
   return (
     <div className="max-w-[1300px] mx-auto min-h-screen">
       <PageTitle title="Shop" />
       <div className="flex gap-4">
         <ShoppingLeftSidebar />
         <Suspense fallback={<Loading />}>
-          <ShoppingItems />
+          <ShoppingItems category={category} />
         </Suspense>
       </div>
     </div>
