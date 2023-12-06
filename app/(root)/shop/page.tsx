@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import Loading from "./loading";
 import ShoppingItems from "@/components/shop/ShoppingItems";
 
-export function Page({
+function Page({
   // params,
   searchParams,
 }: {
