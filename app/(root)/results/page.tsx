@@ -1,20 +1,23 @@
 import PageTitle from "@/components/shared/PageTitle";
-import { fetchResults } from "@/lib/actions/result.action";
 import React, { Suspense } from "react";
 import Loading from "./loading";
 import AllResults from "@/components/results/AllResults";
 
-const Page = async () => {
-  const results = await fetchResults();
+async function Page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) {
+  const page = searchParams.page ? +searchParams.page : 1;
 
   return (
-    <div className="max-w-[1300px] mx-auto mt-10 min-h-screen">
+    <div className="max-w-[1300px] mx-auto min-h-screen relative">
       <PageTitle title="Results" />
       <Suspense fallback={<Loading />}>
-        <AllResults results={results} />
+        <AllResults page={page} />
       </Suspense>
     </div>
   );
-};
+}
 
 export default Page;

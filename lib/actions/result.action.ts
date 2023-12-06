@@ -14,7 +14,7 @@ interface createResultProps {
     date: string;
 }
 
-export async function createResult ({ id, title, content, prizepool, image, path, date }: createResultProps) {
+export async function createResult ({ id, title, content, prizepool, image, path, date }: createResultProps){
     connectToDB();
 
     try {
@@ -34,16 +34,41 @@ export async function createResult ({ id, title, content, prizepool, image, path
 }
 
 
-export async function fetchResults() {
+export const fetchResults = async ( pageNumber = 1, pageSize = 9) => {
+    try {
+        connectToDB();
+        const skippedResults = (pageNumber - 1) * pageSize;
+
+        const allResults = await Result.find({})
+        .sort({createdAt: 'desc'})
+        .skip(skippedResults)
+        .limit(pageSize)
+
+    
+        const totalResultsCount = await Result.countDocuments();
+
+        const isNextPage = totalResultsCount > skippedResults + allResults.length;
+
+        if(!allResults) return
+
+        return { allResults, isNextPage, totalResultsCount }
+    } catch (error: any) {
+        throw new Error(`Failed to fetch all result: ${error.message}`)
+    }
+}
+
+export async function fetchCurrentResultDetails(id: string){
     try {
         connectToDB();
 
-        const allResult = await Result.find({}).sort({
-            createdAt: 'desc'
-        });
+        const resultDetails = await Result.find({
+            _id: id
+        })
 
-        return allResult;
+        if(!resultDetails) return false;
+
+        return resultDetails;
     } catch (error: any) {
-        throw new Error(`Failed to fetch all result: ${error.message}`)
+        throw new Error(`Failed to fetch result details: ${error.message}`)
     }
 }

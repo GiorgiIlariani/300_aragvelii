@@ -127,3 +127,16 @@ export const RosterConstants = [
     },
   },
 ];
+
+export const shoppingItemsCategory = [
+  "laptops",
+  "headsets",
+  "chairs",
+  "videocards",
+  "others",
+  "smartphones",
+  "mice",
+  "monitors",
+  "keyboards",
+  "pads",
+];

@@ -10,7 +10,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
   const playerObjectDetails = player?.[0];
 
   return (
-    <div className="max-w-[1300px] mx-auto mt-10 min-h-screen">
+    <div className="max-w-[1300px] mx-auto min-h-screen">
       <PageTitle title="Change Statistic" />
       <Suspense
         fallback={

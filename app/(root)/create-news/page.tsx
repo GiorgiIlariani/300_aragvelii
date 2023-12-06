@@ -15,7 +15,7 @@ const Page = async () => {
   if (email?.[0] !== "codemasterig@gmail.com") return null;
 
   return (
-    <div className="max-w-[1300px] mx-auto mt-10 pt-10 pb-[100px] px-4">
+    <div className="max-w-[1300px] mx-auto pt-10 pb-[100px] px-4">
       <h1 className="text-light-1 text-3xl mb-10">Create news</h1>
       <CreateNews userId={userInfo?._id} username={user.username || ""} />
     </div>

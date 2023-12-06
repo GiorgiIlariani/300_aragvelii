@@ -1,8 +1,10 @@
+import { ObjectId } from "mongoose";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 type Props = {
+  id: ObjectId;
   image: string;
   title: string;
   prizepool: string;
@@ -10,10 +12,17 @@ type Props = {
   createdAt: Date;
 };
 
-const ResultCard = ({ image, title, prizepool, date, createdAt }: Props) => {
+const ResultCard = ({
+  image,
+  title,
+  prizepool,
+  date,
+  createdAt,
+  id,
+}: Props) => {
   return (
     <Link
-      href={``}
+      href={`/results/${id}`}
       className="w-full max-h-[323px] rounded-xl text-white cursor-pointer group transition-all">
       <div className="flex flex-col justify-center w-full">
         <div className="relative overflow-hidden w-full">
@@ -35,10 +44,7 @@ const ResultCard = ({ image, title, prizepool, date, createdAt }: Props) => {
           </div>
           <hr className="bg-white" />
           <div className="flex items-center justify-between">
-            <h3 className="text-white font-normal">
-              {" "}
-              {JSON.stringify(createdAt).slice(0, 20)}
-            </h3>
+            <h3 className="text-white font-normal">300 Aragveli</h3>
             <span className="text-white font-normal">{date}</span>
           </div>
         </div>

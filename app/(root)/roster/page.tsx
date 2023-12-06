@@ -5,7 +5,7 @@ import Roster from "@/components/cards/Roster";
 
 const Page = async () => {
   return (
-    <div className="max-w-[1300px] mx-auto mt-10 min-h-screen">
+    <div className="max-w-[1300px] mx-auto min-h-screen">
       <PageTitle title="Our Roster" />
       <Suspense fallback={<Loading />}>
         <Roster />
