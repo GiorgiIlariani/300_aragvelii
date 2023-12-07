@@ -10,7 +10,7 @@ const ShoppingItems = async ({
   const allShoppingItems = await fetchAllShoppingItems(category);
 
   return (
-    <div className="w-full px-4 grid grid-cols-3 xl:grid-cols-2 md:flex md:flex-col gap-[18px] pb-10">
+    <div className="w-full px-4 grid grid-cols-3 gap-4">
       {allShoppingItems.map((item) => (
         <ShoppingCard
           key={item._id}

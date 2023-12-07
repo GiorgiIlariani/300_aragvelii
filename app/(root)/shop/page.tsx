@@ -16,7 +16,7 @@ function Page({
   return (
     <div className="max-w-[1300px] mx-auto min-h-screen">
       <PageTitle title="Shop" />
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-start">
         <ShoppingLeftSidebar />
         <Suspense fallback={<Loading />}>
           <ShoppingItems category={category} />
