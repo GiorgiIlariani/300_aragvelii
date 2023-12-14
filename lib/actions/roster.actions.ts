@@ -34,8 +34,6 @@ export const fetchEachPlayer = async (playerId: string) => {
     try {
         connectToDB();
         const player = await Roster.find({ _id: playerId });
-
-        await new Promise((resolve) => setTimeout(resolve, 5000));
         
         return player;
     } catch (error: any) {

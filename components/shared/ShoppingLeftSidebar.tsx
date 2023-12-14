@@ -12,9 +12,11 @@ const ShoppingLeftSidebar = () => {
   const pathname = usePathname();
   const [searchedItem, setSearchedItem] = useState("");
   const searchParams = useSearchParams();
+  // const [isLoading, setIsLoading] = useState(false);
   const category = searchParams.get("category")?.toLowerCase();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // setIsLoading(true);
     const current = new URLSearchParams(Array.from(searchParams.entries())); // -> has to use this form
 
     setSearchedItem(e.target.value.toLowerCase());
@@ -34,12 +36,8 @@ const ShoppingLeftSidebar = () => {
     const query = search ? `?${search}` : "";
 
     router.push(`${pathname}${query}`);
+    // setIsLoading(false);
   };
-
-  // console.log(searchedItem);
-  // console.log(searchParams);
-
-  console.log(searchParams);
 
   return (
     <div className="min-w-[270px] lg:min-w-[260px] flex flex-col">

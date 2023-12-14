@@ -65,6 +65,8 @@ export async function fetchAllShoppingItems(
         }
 
         const shoppingCards = await ShoppingCard.find(query);
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+
 
         if (!shoppingCards) return [];
 
