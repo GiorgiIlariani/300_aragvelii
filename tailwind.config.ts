@@ -36,6 +36,9 @@ module.exports = {
         lg: { max: "1080px" },
         // => @media (max-width: 1080px) { ... }
 
+        shoppingScreen: { max: "860px" },
+        // => @media (max-width: 1280px) { ... }
+
         md: { max: "768px" },
         // => @media (max-width: 768px) { ... }
 

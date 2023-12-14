@@ -44,7 +44,7 @@ const ResultCard = ({
           </div>
           <hr className="bg-white" />
           <div className="flex items-center justify-between">
-            <h3 className="text-white font-normal">300 Aragveli</h3>
+            <h3 className="text-white font-normal">localur</h3>
             <span className="text-white font-normal">{date}</span>
           </div>
         </div>

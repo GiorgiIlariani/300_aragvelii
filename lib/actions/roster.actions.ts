@@ -35,6 +35,8 @@ export const fetchEachPlayer = async (playerId: string) => {
         connectToDB();
         const player = await Roster.find({ _id: playerId });
 
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+        
         return player;
     } catch (error: any) {
         throw new Error(`Failed to fetch player data: ${error.message}`);
