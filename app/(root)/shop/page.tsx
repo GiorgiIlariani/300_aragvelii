@@ -1,7 +1,5 @@
 import PageTitle from "@/components/shared/PageTitle";
 import ShoppingLeftSidebar from "@/components/shared/ShoppingLeftSidebar";
-import { Suspense } from "react";
-import Loading from "./loading";
 import ShoppingItems from "@/components/shop/ShoppingItems";
 
 function Page({
@@ -11,8 +9,6 @@ function Page({
   // params: { slug: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  console.log(searchParams);
-
   const category = searchParams?.category;
   const search = searchParams?.search;
 
@@ -21,9 +17,7 @@ function Page({
       <PageTitle title="Shop" />
       <div className="flex gap-4 items-start px-4">
         <ShoppingLeftSidebar />
-        <Suspense fallback={<Loading />}>
-          <ShoppingItems category={category} search={search} />
-        </Suspense>
+        <ShoppingItems category={category} search={search} />
       </div>
     </div>
   );
